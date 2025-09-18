@@ -3,7 +3,8 @@
   "compilerOptions": {
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "resolveJsonModule": true
   },
   "exclude": ["dist"]
 }
