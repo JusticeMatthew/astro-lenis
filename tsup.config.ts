@@ -1,7 +1,7 @@
 import { copyFileSync, existsSync, mkdirSync } from "node:fs";
 import { dirname } from "node:path";
 import { defineConfig } from "tsup";
-import pkg from "./package.json" with { type: "json" };
+import { peerDependencies } from "./package.json";
 
 export default defineConfig((options) => {
   const dev = !!options.watch;
@@ -15,7 +15,7 @@ export default defineConfig((options) => {
     clean: true,
     splitting: false,
     minify: !dev,
-    external: [...Object.keys(pkg.peerDependencies)],
+    external: [...Object.keys(peerDependencies)],
     tsconfig: "tsconfig.json",
     onSuccess: async () => {
       const srcCss = "src/lenis-styles.css";
