@@ -19,6 +19,7 @@ export const astroLenis = defineIntegration({
             `
             import Lenis from 'lenis';
             const lenis = new Lenis();
+            window.lenis = lenis;
 
             function raf(time) {
               lenis.raf(time);
