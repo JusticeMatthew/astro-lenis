@@ -1,16 +1,22 @@
+import { readFileSync } from "node:fs";
+import { resolve, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import { defineIntegration } from "astro-integration-kit";
-import { resolve, dirname } from 'node:path'
-import { fileURLToPath } from 'node:url'
 
-const absoluteStylesPath = resolve(dirname(fileURLToPath(import.meta.url)), 'lenis-styles.css')
+const absoluteStylesPath = resolve(
+  dirname(fileURLToPath(import.meta.url)),
+  "lenis-styles.css"
+);
 
 export const astroLenis = defineIntegration({
-	name: "astro-lenis",
-	setup() {
-		return {
-			hooks: {
+  name: "astro-lenis",
+  setup() {
+    return {
+      hooks: {
         "astro:config:setup": ({ injectScript }) => {
-          injectScript('page', `
+          injectScript(
+            "page",
+            `
             import Lenis from 'lenis';
             const lenis = new Lenis();
 
@@ -20,10 +26,20 @@ export const astroLenis = defineIntegration({
             }
 
             requestAnimationFrame(raf);
-          `)
-          injectScript('page-ssr', JSON.stringify(absoluteStylesPath))
+          `
+          );
+
+          const cssContent = readFileSync(absoluteStylesPath, "utf-8");
+          injectScript(
+            "head-inline",
+            `
+            const style = document.createElement('style');
+            style.textContent = \`${cssContent}\`;
+            document.head.appendChild(style);
+          `
+          );
         },
       },
-		};
-	},
+    };
+  },
 });
