@@ -44,7 +44,7 @@ const optionsSchema = z
 
 function serializeOptions(options: LenisOptions | undefined): string {
   try {
-    return JSON.stringify(options ?? {}, (_key, value: unknown) => {
+    const serialized = JSON.stringify(options ?? {}, (_key, value: unknown) => {
       if (typeof value === "function") {
         throw new TypeError(
           "callback options are not supported in astro.config; initialize Lenis in client code instead",
@@ -54,6 +54,20 @@ function serializeOptions(options: LenisOptions | undefined): string {
         throw new TypeError("bigint values are not supported");
       }
       return value;
+    });
+    if (typeof serialized !== "string") {
+      return "{}";
+    }
+
+    return serialized.replace(/[<>&\u2028\u2029]/g, (character) => {
+      const replacements: Record<string, string> = {
+        "<": "\\u003C",
+        ">": "\\u003E",
+        "&": "\\u0026",
+        "\u2028": "\\u2028",
+        "\u2029": "\\u2029",
+      };
+      return replacements[character] ?? character;
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);

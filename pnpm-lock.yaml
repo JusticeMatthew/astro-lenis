@@ -21,6 +21,9 @@ importers:
         specifier: ^5.9.2
         version: 5.9.2
     devDependencies:
+      prettier:
+        specifier: ^3.10.1
+        version: 3.10.1
       tsup:
         specifier: ^8.5.0
         version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)
@@ -584,6 +587,7 @@ packages:
 
   astro-integration-kit@0.19.0:
     resolution: {integrity: sha512-ftDrem91kJZoenhpJJfRtB29D/bmNglEp2oOXqF1uL5yODZauGIy3tDgIbec0UEMp6tNuky4tfWseUXpej5Dng==}
+    deprecated: 'Check the migration guide: https://astro-integration-kit.netlify.app/migration-guide/'
     peerDependencies:
       astro: ^4.14.0 || ^5.0.0
 
@@ -1266,6 +1270,11 @@ packages:
     resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
     engines: {node: ^10 || ^12 || >=14}
 
+  prettier@3.10.1:
+    resolution: {integrity: sha512-70vp3ZUYoPlFbF9uiTdXHUUCGEIp7d4+6p+8DYbkm2jP7x/3i/paXVF6dopSI3zd/CEitrZN1rc4i85xWmmXlg==}
+    engines: {node: '>=14'}
+    hasBin: true
+
   prismjs@1.30.0:
     resolution: {integrity: sha512-DEvV2ZF2r2/63V+tK8hQvrR2ZGn10srHbXviTlcv7Kpzw8jWiNTqbVgjO3IY8RxrrOUF8VPMQQFysYYYv0YZxw==}
     engines: {node: '>=6'}
@@ -1461,6 +1470,7 @@ packages:
   tsconfck@3.1.6:
     resolution: {integrity: sha512-ks6Vjr/jEw0P1gmOVwutM3B7fWxoWBL2KRDb1JfqGVawBmO5UsvmWOQFGHBPl5yxYz4eERr19E6L7NMv+Fej4w==}
     engines: {node: ^18 || >=20}
+    deprecated: unmaintained
     hasBin: true
     peerDependencies:
       typescript: ^5.0.0
@@ -3140,6 +3150,8 @@ snapshots:
       nanoid: 3.3.11
       picocolors: 1.1.1
       source-map-js: 1.2.1
+
+  prettier@3.10.1: {}
 
   prismjs@1.30.0: {}
 

@@ -15,7 +15,7 @@ An Astro integration that adds simple, performant smooth scrolling with
 
 ## Requirements
 
-- Astro 5 or 6
+- Astro 5
 - Lenis 1.3.11 or newer within the 1.x range
 - Node.js 18 or newer
 
