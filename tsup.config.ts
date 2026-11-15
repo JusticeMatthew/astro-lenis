@@ -1,12 +1,11 @@
 import { copyFileSync, existsSync, mkdirSync } from "node:fs";
 import { dirname } from "node:path";
 import { defineConfig } from "tsup";
-import { peerDependencies } from "./package.json";
 
 export default defineConfig((options) => {
   const dev = !!options.watch;
   return {
-    entry: ["src/**/*.(ts|js)"],
+    entry: ["src/index.ts"],
     format: ["esm"],
     target: "node18",
     bundle: true,
@@ -15,7 +14,7 @@ export default defineConfig((options) => {
     clean: true,
     splitting: false,
     minify: !dev,
-    external: [...Object.keys(peerDependencies)],
+    external: ["astro", "lenis"],
     tsconfig: "tsconfig.json",
     onSuccess: async () => {
       const srcCss = "src/lenis-styles.css";
@@ -25,6 +24,6 @@ export default defineConfig((options) => {
         mkdirSync(dirname(destCss), { recursive: true });
         copyFileSync(srcCss, destCss);
       }
-    }
+    },
   };
 });

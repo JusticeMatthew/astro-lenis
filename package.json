@@ -30,11 +30,15 @@
   ],
   "scripts": {
     "dev": "tsup --watch",
-    "build": "tsup"
+    "build": "tsup",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run typecheck && npm run build && node --test"
   },
   "type": "module",
   "peerDependencies": {
-    "astro": "^5.13.8",
+    "astro": "^5.0.0",
     "lenis": "^1.3.11"
   },
   "dependencies": {
@@ -42,6 +46,7 @@
     "typescript": "^5.9.2"
   },
   "devDependencies": {
+    "prettier": "^3.10.1",
     "tsup": "^8.5.0"
   }
 }
